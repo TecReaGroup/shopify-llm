@@ -1,1 +1,254 @@
-[]
+[
+  {
+    "font": "Astra",
+    "count": 2699
+  },
+  {
+    "font": "Plus Jakarta Sans",
+    "count": 1250
+  },
+  {
+    "font": "Georgia",
+    "count": 881
+  },
+  {
+    "font": "Times",
+    "count": 819
+  },
+  {
+    "font": "Roboto",
+    "count": 366
+  },
+  {
+    "font": "Open Sans",
+    "count": 280
+  },
+  {
+    "font": "Lato",
+    "count": 226
+  },
+  {
+    "font": "Akatab",
+    "count": 163
+  },
+  {
+    "font": "Merriweather",
+    "count": 146
+  },
+  {
+    "font": "Roboto Slab",
+    "count": 142
+  },
+  {
+    "font": "Montserrat",
+    "count": 131
+  },
+  {
+    "font": "Times New Roman",
+    "count": 126
+  },
+  {
+    "font": "Merriweather Sans",
+    "count": 98
+  },
+  {
+    "font": "Tahoma",
+    "count": 62
+  },
+  {
+    "font": "WooCommerce",
+    "count": 56
+  },
+  {
+    "font": "Helvetica",
+    "count": 50
+  },
+  {
+    "font": "Arial",
+    "count": 48
+  },
+  {
+    "font": "Yantramanav",
+    "count": 38
+  },
+  {
+    "font": "Helvetica Neue",
+    "count": 32
+  },
+  {
+    "font": "-apple-system",
+    "count": 26
+  },
+  {
+    "font": "Padauk",
+    "count": 26
+  },
+  {
+    "font": "Amiko",
+    "count": 22
+  },
+  {
+    "font": "Trebuchet MS",
+    "count": 20
+  },
+  {
+    "font": "var( --e-global-typography-a036d6f-font-family )",
+    "count": 18
+  },
+  {
+    "font": "Font Awesome 5 Free",
+    "count": 18
+  },
+  {
+    "font": "Inter",
+    "count": 18
+  },
+  {
+    "font": "blinkmacsystemfont",
+    "count": 16
+  },
+  {
+    "font": "helvetica",
+    "count": 16
+  },
+  {
+    "font": "Courier",
+    "count": 12
+  },
+  {
+    "font": "eicons",
+    "count": 12
+  },
+  {
+    "font": "BlinkMacSystemFont",
+    "count": 10
+  },
+  {
+    "font": "Segoe UI",
+    "count": 10
+  },
+  {
+    "font": "Font Awesome 5 Brands",
+    "count": 10
+  },
+  {
+    "font": "ABeeZee",
+    "count": 10
+  },
+  {
+    "font": "star",
+    "count": 8
+  },
+  {
+    "font": "Ubuntu",
+    "count": 8
+  },
+  {
+    "font": "Cantarell",
+    "count": 8
+  },
+  {
+    "font": "Courier New",
+    "count": 8
+  },
+  {
+    "font": "var( --e-global-typography-accent-font-family )",
+    "count": 6
+  },
+  {
+    "font": "Courier 10 Pitch",
+    "count": 4
+  },
+  {
+    "font": "Oxygen-Sans",
+    "count": 4
+  },
+  {
+    "font": "swiper-icons",
+    "count": 4
+  },
+  {
+    "font": "Oxygen",
+    "count": 4
+  },
+  {
+    "font": "Fira Sans",
+    "count": 4
+  },
+  {
+    "font": "Droid Sans",
+    "count": 4
+  },
+  {
+    "font": "Arial !important",
+    "count": 2
+  },
+  {
+    "font": "var( --e-global-typography-text-font-family )",
+    "count": 2
+  },
+  {
+    "font": "var( --e-global-typography-dbe24b7-font-family )",
+    "count": 2
+  },
+  {
+    "font": "var( --e-global-typography-a528f3a-font-family )",
+    "count": 2
+  },
+  {
+    "font": "var( --e-global-typography-3160a10-font-family )",
+    "count": 2
+  },
+  {
+    "font": "var( --e-global-typography-7c75b5e-font-family )",
+    "count": 2
+  },
+  {
+    "font": "Baskerville",
+    "count": 2
+  },
+  {
+    "font": "Noto Sans",
+    "count": 2
+  },
+  {
+    "font": "Apple Color Emoji",
+    "count": 2
+  },
+  {
+    "font": "Segoe UI Emoji",
+    "count": 2
+  },
+  {
+    "font": "Segoe UI Symbol",
+    "count": 2
+  },
+  {
+    "font": "Noto Color Emoji",
+    "count": 2
+  },
+  {
+    "font": "Archivo",
+    "count": 2
+  },
+  {
+    "font": "Playfair Display",
+    "count": 2
+  },
+  {
+    "font": "Google-Oswald",
+    "count": 2
+  },
+  {
+    "font": "Arimo",
+    "count": 2
+  },
+  {
+    "font": "elementskit",
+    "count": 2
+  },
+  {
+    "font": "elementskit!important",
+    "count": 2
+  }
+]
