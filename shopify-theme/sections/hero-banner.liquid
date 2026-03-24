@@ -1,0 +1,232 @@
+{%- liquid
+  assign overlay_opacity = section.settings.overlay_opacity | divided_by: 100.0
+  assign background_image = section.settings.background_image
+  assign remote_image_url = section.settings.remote_background_image_url | strip
+  assign remote_video_url = section.settings.remote_background_video_url | strip
+  assign fallback_image_url = ''
+
+  if background_image != blank
+    assign fallback_image_url = background_image | image_url: width: 2400
+  elsif remote_image_url != blank
+    assign fallback_image_url = remote_image_url
+  endif
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} .pt-hero {
+    --pt-hero-overlay-opacity: {{ overlay_opacity }};
+    --pt-hero-min-height-mobile: {{ section.settings.hero_height_mobile }}px;
+    --pt-hero-min-height-desktop: {{ section.settings.hero_height_desktop }}px;
+  }
+{%- endstyle -%}
+
+<section class="pt-section pt-hero">
+  <div class="pt-hero__media">
+    {%- if remote_video_url != blank -%}
+      <video
+        class="pt-hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        {% if fallback_image_url != blank %}
+          poster="{{ fallback_image_url }}"
+        {% endif %}
+      >
+        <source src="{{ remote_video_url }}" type="video/mp4">
+      </video>
+    {%- elsif fallback_image_url != blank -%}
+      <img
+        class="pt-hero__image"
+        src="{{ fallback_image_url }}"
+        alt="{{ section.settings.heading_line_1 | escape }}"
+        loading="eager"
+      >
+    {%- else -%}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'pt-hero__placeholder placeholder-svg' }}
+    {%- endif -%}
+    <div class="pt-home-overlay"></div>
+  </div>
+
+  <div class="pt-section__inner pt-hero__inner">
+    <div class="pt-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="pt-section__eyebrow pt-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.heading_line_1 != blank -%}
+        <h1 class="pt-section__title pt-hero__title">
+          <span class="pt-hero__title-line">{{ section.settings.heading_line_1 }}</span>
+          {%- if section.settings.heading_line_2 != blank -%}
+            <span class="pt-hero__title-line pt-hero__title-line--accent">{{ section.settings.heading_line_2 }}</span>
+          {%- endif -%}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="pt-hero__selling-points list-unstyled" role="list">
+          {%- for block in section.blocks -%}
+            <li class="pt-hero__selling-point" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.show_pattern_divider -%}
+        <div class="pt-hero__divider" aria-hidden="true"></div>
+      {%- endif -%}
+
+      {%- if section.settings.cta_label != blank -%}
+        <a href="{{ section.settings.cta_link | default: routes.root_url }}" class="pt-button pt-hero__button">
+          <span class="pt-hero__button-icon" aria-hidden="true">»</span>
+          <span>{{ section.settings.cta_label | escape }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "tag": "section",
+  "class": "section section-hero-banner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Perfectextile"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading line 1",
+      "default": "Redefining Polyester: From Fiber to Finish Home Beddings."
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading line 2",
+      "default": "Driving Textile Competitiveness Through Xinjiang’s Energy Edge"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Quote Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pattern_divider",
+      "label": "Show divider",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Fallback background image"
+    },
+    {
+      "type": "text",
+      "id": "remote_background_image_url",
+      "label": "Remote background image URL"
+    },
+    {
+      "type": "text",
+      "id": "remote_background_video_url",
+      "label": "Remote MP4 video URL"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "hero_height_desktop",
+      "min": 520,
+      "max": 980,
+      "step": 20,
+      "unit": "px",
+      "label": "Desktop height",
+      "default": 720
+    },
+    {
+      "type": "range",
+      "id": "hero_height_mobile",
+      "min": 420,
+      "max": 760,
+      "step": 20,
+      "unit": "px",
+      "label": "Mobile height",
+      "default": 560
+    }
+  ],
+  "blocks": [
+    {
+      "type": "selling_point",
+      "name": "Selling point",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Manufacturing Vendor With Over 20year Experience"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner",
+      "blocks": [
+        {
+          "type": "selling_point",
+          "settings": {
+            "text": "Manufacturing Vendor With Over 20year Experience"
+          }
+        },
+        {
+          "type": "selling_point",
+          "settings": {
+            "text": "Vertifical Setup With Cost Leadership And End-To-End Management"
+          }
+        },
+        {
+          "type": "selling_point",
+          "settings": {
+            "text": "Certificated: OEKO-TEX 100 ; GRS"
+          }
+        },
+        {
+          "type": "selling_point",
+          "settings": {
+            "text": "Pattern Designers Based Abroad And China"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

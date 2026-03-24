@@ -1,0 +1,130 @@
+{{ 'sections-home.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign section_eyebrow = section.settings.eyebrow | strip
+  assign section_heading = section.settings.heading | strip
+  assign section_description = section.settings.description | newline_to_br
+  assign button_label = section.settings.button_label | strip
+-%}
+
+<section class="pt-footer-cta-banner section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="pt-footer-cta-banner__inner">
+      <div class="pt-footer-cta-banner__content">
+        {%- if section_eyebrow != blank -%}
+          <p class="pt-footer-cta-banner__eyebrow">{{ section_eyebrow | escape }}</p>
+        {%- endif -%}
+
+        {%- if section_heading != blank -%}
+          <h2 class="pt-footer-cta-banner__heading h1">{{ section_heading | escape }}</h2>
+        {%- endif -%}
+
+        {%- if section_description != blank -%}
+          <div class="pt-footer-cta-banner__description rte">{{ section_description }}</div>
+        {%- endif -%}
+      </div>
+
+      {%- if button_label != blank -%}
+        <div class="pt-footer-cta-banner__actions">
+          <a
+            class="button pt-button pt-button--primary"
+            {% if section.settings.button_link != blank %}
+              href="{{ section.settings.button_link }}"
+            {% else %}
+              role="link" aria-disabled="true"
+            {% endif %}
+          >
+            {{ button_label | escape }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PT Footer CTA banner",
+  "tag": "section",
+  "class": "section section-pt-footer-cta-banner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Ready to Choose Us?"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ready to Choose Us? Fabric and bedding"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We are committed to providing every customer with stable textile manufacturing support.\nContact us to discuss fabric, bedding, and full catalog sourcing requirements."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "quote now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 56
+    }
+  ],
+  "presets": [
+    {
+      "name": "PT Footer CTA banner"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+{% endstylesheet %}

@@ -1,0 +1,12 @@
+<article class="pt-card pt-card--stat" {{ block.shopify_attributes }}>
+  <div class="pt-stat">
+    <p class="pt-stat__value">
+      <span>{{ block.settings.number | escape }}</span>
+      {%- if block.settings.suffix != blank -%}
+        <sup>{{ block.settings.suffix | escape }}</sup>
+      {%- endif -%}
+    </p>
+    <p class="pt-stat__label">{{ block.settings.label | escape }}</p>
+    <div class="pt-card__accent-line" aria-hidden="true"></div>
+  </div>
+</article>

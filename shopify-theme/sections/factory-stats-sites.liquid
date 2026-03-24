@@ -1,0 +1,148 @@
+<section class="pt-section pt-section--soft pt-factory-stats-sites">
+  <div class="pt-section__inner">
+    <div class="pt-factory-stats-sites__stats pt-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'stat_item' -%}
+          {% render 'card-stat', block: block %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="pt-factory-stats-sites__sites pt-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'site_video_card' -%}
+          {% render 'card-video-site', block: block %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Factory stats & sites",
+  "tag": "section",
+  "class": "section section-factory-stats-sites",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "stat_item",
+      "name": "Stat item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "21"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Suffix",
+          "default": "+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Years Experience"
+        }
+      ]
+    },
+    {
+      "type": "site_video_card",
+      "name": "Site video card",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Factory1:"
+        },
+        {
+          "type": "textarea",
+          "id": "address",
+          "label": "Address",
+          "default": "Industrial Park, Meishan Town, Changxing County, Huzhou City, Zhejiang Province, China"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover image"
+        },
+        {
+          "type": "text",
+          "id": "remote_cover_image_url",
+          "label": "Remote cover image URL"
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Factory stats & sites",
+      "blocks": [
+        {
+          "type": "stat_item",
+          "settings": {
+            "number": "21",
+            "suffix": "",
+            "label": "Years Experience"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "number": "80 M",
+            "suffix": "+",
+            "label": "Meters Annual Output"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "number": "66,780 m",
+            "suffix": "2",
+            "label": "Factory Floor Space"
+          }
+        },
+        {
+          "type": "stat_item",
+          "settings": {
+            "number": "50",
+            "suffix": "+",
+            "label": "Countries Ground The World"
+          }
+        },
+        {
+          "type": "site_video_card",
+          "settings": {
+            "title": "Factory1:",
+            "address": "Industrial Park, Meishan Town, Changxing County, Huzhou City, Zhejiang Province, China",
+            "remote_cover_image_url": "https://perfectextile.com/wp-content/uploads/2024/10/20241015162805.png",
+            "video_url": "https://www.youtube.com/watch?v=o7R812yHz-k"
+          }
+        },
+        {
+          "type": "site_video_card",
+          "settings": {
+            "title": "Factory2:",
+            "address": "Economic And Technological Development Zone Industrial Park Aral Xinjiang Province, China",
+            "remote_cover_image_url": "https://perfectextile.com/wp-content/uploads/2024/10/20241015121353.png",
+            "video_url": "https://www.youtube.com/watch?v=TlhDNVHcoPs"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,179 @@
+<section class="pt-section pt-testimonials-carousel">
+  <div class="pt-section__inner pt-testimonials-carousel__inner">
+    <div class="pt-testimonials-carousel__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="pt-section__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pt-section__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <p class="pt-section__description">{{ section.settings.description }}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="pt-button" href="{{ section.settings.button_link | default: routes.root_url }}">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+
+    <div class="pt-testimonials-carousel__slider">
+      <div class="pt-testimonials-carousel__track" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign image = block.settings.image
+            assign remote_image_url = block.settings.remote_image_url | strip
+            assign image_url = ''
+
+            if image != blank
+              assign image_url = image | image_url: width: 900
+            elsif remote_image_url != blank
+              assign image_url = remote_image_url
+            endif
+          -%}
+
+          <article class="pt-testimonials-carousel__slide{% if forloop.index == 2 %} is-featured{% endif %}" role="listitem" {{ block.shopify_attributes }}>
+            <div class="pt-testimonials-carousel__slide-card">
+              {%- if image_url != blank -%}
+                <img src="{{ image_url }}" alt="{{ block.settings.alt_text | default: block.settings.customer_name | escape }}" loading="lazy">
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'pt-testimonials-carousel__placeholder placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            {%- if block.settings.quote != blank or block.settings.customer_name != blank -%}
+              <div class="pt-testimonials-carousel__meta">
+                {%- if block.settings.quote != blank -%}
+                  <p class="pt-testimonials-carousel__quote">{{ block.settings.quote }}</p>
+                {%- endif -%}
+                {%- if block.settings.customer_name != blank -%}
+                  <p class="pt-testimonials-carousel__name">{{ block.settings.customer_name }}</p>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+      <div class="pt-testimonials-carousel__pagination" aria-hidden="true">
+        {%- for block in section.blocks -%}
+          <span class="pt-testimonials-carousel__dot{% if forloop.index == 2 %} is-active{% endif %}"></span>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials carousel",
+  "tag": "section",
+  "class": "section section-testimonials-carousel",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Testimonials"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Reviews From Our Clients"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "At perfectextile,We are customer-centric and will collect feedback from our customers in a timely manner. We will continue to grow from bad feedback and maintain good feedback. Do you have any feedback?"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Write an evaluation"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial_slide",
+      "name": "Testimonial slide",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "remote_image_url",
+          "label": "Remote image URL"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text"
+        },
+        {
+          "type": "text",
+          "id": "quote",
+          "label": "Quote"
+        },
+        {
+          "type": "text",
+          "id": "customer_name",
+          "label": "Customer name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials carousel",
+      "blocks": [
+        {
+          "type": "testimonial_slide",
+          "settings": {
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/10/微信图片_20241012104050.jpg",
+            "alt_text": "client review-3"
+          }
+        },
+        {
+          "type": "testimonial_slide",
+          "settings": {
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/10/89291f7a-b274-445b-b783-4a7063cdefde.jpg",
+            "alt_text": "client review-5"
+          }
+        },
+        {
+          "type": "testimonial_slide",
+          "settings": {
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/10/3efa665b-45b7-44d7-9662-6d22ac173911_副本.png",
+            "alt_text": "client review-6"
+          }
+        },
+        {
+          "type": "testimonial_slide",
+          "settings": {
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/10/415158be-49ce-45f1-b42b-59d5eaf1af9a.jpg",
+            "alt_text": "client review-2"
+          }
+        },
+        {
+          "type": "testimonial_slide",
+          "settings": {
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/10/f7baadca-3c2b-451b-bb8b-22429d4231a3.jpg",
+            "alt_text": "client review-4"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

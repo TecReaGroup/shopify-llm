@@ -1,0 +1,161 @@
+<section class="pt-section pt-production-process-slider">
+  <div class="pt-section__inner">
+    <div class="pt-section__header pt-home-heading-center">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pt-section__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      <div class="pt-divider-accent pt-divider-accent--center" aria-hidden="true"></div>
+
+      {%- if section.settings.description != blank -%}
+        <p class="pt-section__description">{{ section.settings.description }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="pt-production-process-slider__track" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign image = block.settings.image
+          assign remote_image_url = block.settings.remote_image_url | strip
+          assign image_url = ''
+
+          if image != blank
+            assign image_url = image | image_url: width: 1200
+          elsif remote_image_url != blank
+            assign image_url = remote_image_url
+          endif
+        -%}
+
+        <article class="pt-production-process-slider__slide" role="listitem" {{ block.shopify_attributes }}>
+          <div class="pt-production-process-slider__media">
+            {%- if image_url != blank -%}
+              <img src="{{ image_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'pt-production-process-slider__placeholder placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <div class="pt-production-process-slider__content">
+            <h3 class="pt-production-process-slider__title">{{ block.settings.title }}</h3>
+            {%- if block.settings.caption != blank -%}
+              <p class="pt-production-process-slider__caption">{{ block.settings.caption }}</p>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    <div class="pt-production-process-slider__pagination" aria-hidden="true">
+      {%- for block in section.blocks -%}
+        <span class="pt-production-process-slider__dot{% if forloop.first %} is-active{% endif %}"></span>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PT Process Slider",
+  "tag": "section",
+  "class": "section section-production-process-slider",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Perfectextile production process"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover the craftsmanship behind each bedding. Our detailed manufacturing process, from selecting premium materials to the final stitching, ensures quality in every piece we create."
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Slides per view desktop",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Slides per view mobile",
+      "default": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "process_slide",
+      "name": "Process slide",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "remote_image_url",
+          "label": "Remote image URL"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "DTY Process"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PT Process Slider",
+      "blocks": [
+        {
+          "type": "process_slide",
+          "settings": {
+            "title": "DTY Process",
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/11/你的段落文字-27.webp"
+          }
+        },
+        {
+          "type": "process_slide",
+          "settings": {
+            "title": "Beam-Warping",
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/11/你的段落文字-29.webp"
+          }
+        },
+        {
+          "type": "process_slide",
+          "settings": {
+            "title": "Water Jet Weaving Machine",
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/11/你的段落文字-30.webp"
+          }
+        },
+        {
+          "type": "process_slide",
+          "settings": {
+            "title": "Lab Preparation Of Dyes",
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/11/你的段落文字-32.webp"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

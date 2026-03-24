@@ -1,0 +1,198 @@
+{{ 'sections-home.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign section_eyebrow = section.settings.eyebrow | strip
+  assign section_heading = section.settings.heading | strip
+  assign section_subheading = section.settings.subheading | strip
+  assign section_description = section.settings.description | strip
+  assign button_label = section.settings.button_label | strip
+-%}
+
+<section class="pt-global-customers-cta section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="pt-global-customers-cta__inner">
+      <div class="pt-global-customers-cta__content pt-home-heading-center">
+        {%- if section_eyebrow != blank -%}
+          <p class="pt-global-customers-cta__eyebrow">{{ section_eyebrow | escape }}</p>
+        {%- endif -%}
+
+        {%- if section_heading != blank -%}
+          <h2 class="pt-global-customers-cta__heading h1">{{ section_heading | escape }}</h2>
+        {%- endif -%}
+
+        {%- if section_subheading != blank -%}
+          <h3 class="pt-global-customers-cta__subheading">{{ section_subheading | escape }}</h3>
+        {%- endif -%}
+
+        {%- if section_description != blank -%}
+          <div class="pt-global-customers-cta__description rte">
+            <p>{{ section_description | escape }}</p>
+          </div>
+        {%- endif -%}
+
+        {%- if button_label != blank -%}
+          <a
+            class="button pt-button pt-button--primary"
+            {% if section.settings.button_link != blank %}
+              href="{{ section.settings.button_link }}"
+            {% else %}
+              role="link" aria-disabled="true"
+            {% endif %}
+          >
+            {{ button_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="pt-global-customers-cta__metrics" role="list">
+        {%- for block in section.blocks -%}
+          <article class="pt-global-customers-cta__metric" {{ block.shopify_attributes }} role="listitem">
+            {%- if block.settings.value != blank -%}
+              <p class="pt-global-customers-cta__metric-value">{{ block.settings.value | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.label != blank -%}
+              <p class="pt-global-customers-cta__metric-label">{{ block.settings.label | escape }}</p>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PT Global customers CTA",
+  "tag": "section",
+  "class": "section section-pt-global-customers-cta",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Ready to choose us？"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ready to choose us？"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Customers from all over the world have affirmed us"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "From North America to Europe, the Middle East, and beyond, global buyers continue to choose Perfectextile for stable quality, competitive pricing, and responsive manufacturing support."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "get started"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "metric",
+      "name": "Metric",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "50+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Countries served"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "PT Global customers CTA",
+      "blocks": [
+        {
+          "type": "metric",
+          "settings": {
+            "value": "50+",
+            "label": "Countries served"
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "value": "21",
+            "label": "Years of experience"
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "value": "80M+",
+            "label": "Meters annual output"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+{% endstylesheet %}

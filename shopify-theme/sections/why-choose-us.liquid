@@ -1,0 +1,196 @@
+{%- liquid
+  assign background_image = section.settings.background_image
+  assign remote_background_image_url = section.settings.remote_background_image_url | strip
+  assign background_image_url = ''
+
+  if background_image != blank
+    assign background_image_url = background_image | image_url: width: 2400
+  elsif remote_background_image_url != blank
+    assign background_image_url = remote_background_image_url
+  endif
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} .pt-why-choose-us {
+    --pt-why-choose-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+  }
+{%- endstyle -%}
+
+<section class="pt-section pt-why-choose-us">
+  <div class="pt-why-choose-us__media">
+    {%- if background_image_url != blank -%}
+      <img class="pt-why-choose-us__image" src="{{ background_image_url }}" alt="{{ section.settings.heading | escape }}" loading="lazy">
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'pt-why-choose-us__placeholder placeholder-svg' }}
+    {%- endif -%}
+    <div class="pt-why-choose-us__overlay"></div>
+  </div>
+
+  <div class="pt-section__inner pt-why-choose-us__inner">
+    <div class="pt-section__header pt-home-heading-center pt-why-choose-us__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="pt-section__eyebrow pt-why-choose-us__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pt-section__title pt-why-choose-us__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <p class="pt-section__description pt-why-choose-us__description">{{ section.settings.description }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="pt-why-choose-us__grid">
+      {%- for block in section.blocks -%}
+        <article class="pt-why-choose-us__card" {{ block.shopify_attributes }}>
+          <div class="pt-why-choose-us__icon-wrap">
+            {%- if block.settings.icon_image != blank -%}
+              <img src="{{ block.settings.icon_image | image_url: width: 256 }}" alt="{{ block.settings.title | escape }}" loading="lazy" class="pt-why-choose-us__icon-image">
+            {%- elsif block.settings.remote_icon_url != blank -%}
+              <img src="{{ block.settings.remote_icon_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" class="pt-why-choose-us__icon-image">
+            {%- elsif block.settings.icon_svg != blank -%}
+              <div class="pt-why-choose-us__icon-svg">{{ block.settings.icon_svg }}</div>
+            {%- else -%}
+              <div class="pt-why-choose-us__icon-fallback" aria-hidden="true">✦</div>
+            {%- endif -%}
+          </div>
+          <h3 class="pt-why-choose-us__card-title">{{ block.settings.title }}</h3>
+          {%- assign points = block.settings.points | newline_to_br | split: '<br />' -%}
+          <div class="pt-why-choose-us__points">
+            {%- for point in points -%}
+              {%- assign trimmed_point = point | strip -%}
+              {%- if trimmed_point != blank -%}
+                <p>{{ trimmed_point }}</p>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why choose us",
+  "tag": "section",
+  "class": "section section-why-choose-us",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "remote_background_image_url",
+      "label": "Remote background image URL"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 55
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Why choose us"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why choose us?"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Competitive pricing, newly upgraded equipment, increased production capacity, and improved delivery times."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_item",
+      "name": "Feature item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon image"
+        },
+        {
+          "type": "text",
+          "id": "remote_icon_url",
+          "label": "Remote icon URL"
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Inline SVG"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Competitive price"
+        },
+        {
+          "type": "textarea",
+          "id": "points",
+          "label": "Points",
+          "default": "full equpment\nLarge scale centralized procurement\nSensitive to raw material prices"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why choose us",
+      "blocks": [
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "Competitive price",
+            "remote_icon_url": "https://perfectextile.com/wp-content/uploads/2024/11/best-price-2.png",
+            "points": "full equpment\nLarge scale centralized procurement\nSensitive to raw material prices"
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "High quality",
+            "remote_icon_url": "https://perfectextile.com/wp-content/uploads/2024/11/quality-control-1.png",
+            "points": "Strict quality inspection team\nEfficient ERP system\nunderstanding quality requirements"
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "On-time delivery",
+            "remote_icon_url": "https://perfectextile.com/wp-content/uploads/2024/11/on-time-1.png",
+            "points": "Owned factory controllable time\nProfessional team arranges scheme\nHaving efficient logistics partners"
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "Perfect service",
+            "remote_icon_url": "https://perfectextile.com/wp-content/uploads/2024/11/customer-service.png",
+            "points": "Provide professional market research\nFull chain video and photo materials\nResolution of any after-sales issues"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,242 @@
+<section class="pt-section pt-fabric-category-grid">
+  <div class="pt-section__inner">
+    <div class="pt-section__header pt-home-heading-center">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pt-section__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      <div class="pt-divider-accent pt-divider-accent--center" aria-hidden="true"></div>
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="pt-section__description">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="pt-fabric-category-grid__grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign image_primary = block.settings.image_main
+          assign image_secondary = block.settings.image_secondary
+          assign image_tertiary = block.settings.image_tertiary
+          assign image_quaternary = block.settings.image_quaternary
+
+          assign image_primary_url = ''
+          assign image_secondary_url = ''
+          assign image_tertiary_url = ''
+          assign image_quaternary_url = ''
+
+          if image_primary != blank
+            assign image_primary_url = image_primary | image_url: width: 1200
+          endif
+
+          if image_secondary != blank
+            assign image_secondary_url = image_secondary | image_url: width: 900
+          endif
+
+          if image_tertiary != blank
+            assign image_tertiary_url = image_tertiary | image_url: width: 900
+          endif
+
+          if image_quaternary != blank
+            assign image_quaternary_url = image_quaternary | image_url: width: 900
+          endif
+        -%}
+
+        <article class="pt-fabric-category-grid__card" {{ block.shopify_attributes }}>
+          <a class="pt-fabric-category-grid__link" href="{{ block.settings.link | default: '#' }}">
+            <div class="pt-fabric-category-grid__media">
+              <div class="pt-fabric-category-grid__collage pt-fabric-category-grid__collage--{{ forloop.index }}">
+                {%- if image_primary_url != blank -%}
+                  <div class="pt-fabric-category-grid__cell pt-fabric-category-grid__cell--primary">
+                    <img src="{{ image_primary_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                  </div>
+                {%- endif -%}
+
+                {%- if image_secondary_url != blank -%}
+                  <div class="pt-fabric-category-grid__cell pt-fabric-category-grid__cell--secondary">
+                    <img src="{{ image_secondary_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                  </div>
+                {%- endif -%}
+
+                {%- if image_tertiary_url != blank -%}
+                  <div class="pt-fabric-category-grid__cell pt-fabric-category-grid__cell--tertiary">
+                    <img src="{{ image_tertiary_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                  </div>
+                {%- endif -%}
+
+                {%- if image_quaternary_url != blank -%}
+                  <div class="pt-fabric-category-grid__cell pt-fabric-category-grid__cell--quaternary">
+                    <img src="{{ image_quaternary_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                  </div>
+                {%- endif -%}
+
+                {%- if image_primary_url == blank and image_secondary_url == blank and image_tertiary_url == blank and image_quaternary_url == blank -%}
+                  {{ 'collection-1' | placeholder_svg_tag: 'pt-fabric-category-grid__placeholder placeholder-svg' }}
+                {%- endif -%}
+              </div>
+            </div>
+
+            <h3 class="pt-fabric-category-grid__title">{{ block.settings.title }}</h3>
+          </a>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.primary_button_label != blank or section.settings.secondary_button_label != blank -%}
+      <div class="pt-fabric-category-grid__actions pt-home-actions-center">
+        {%- if section.settings.primary_button_label != blank -%}
+          <a class="pt-button" href="{{ section.settings.primary_button_link | default: routes.root_url }}">
+            {{ section.settings.primary_button_label | escape }}
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.secondary_button_label != blank -%}
+          <a class="pt-button pt-button--secondary" href="{{ section.settings.secondary_button_link | default: routes.root_url }}">
+            {{ section.settings.secondary_button_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fabric category grid",
+  "tag": "section",
+  "class": "section section-fabric-category-grid",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Choose your competitive bedding Textile now!"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "Quote Now"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label",
+      "default": "Request A Full Catalog"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_card",
+      "name": "Category card",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Microfiber Textile"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_main",
+          "label": "Main image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_secondary",
+          "label": "Secondary image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_tertiary",
+          "label": "Tertiary image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_quaternary",
+          "label": "Quaternary image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fabric category grid",
+      "blocks": [
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Microfiber Textile"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Recycled Textile"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Satin Textile"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Functional Textile"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Seesucker"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Waffle Textile"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Clipped Textile"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Tufed Textile"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

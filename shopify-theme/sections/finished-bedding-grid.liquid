@@ -1,0 +1,179 @@
+<section class="pt-section pt-section--soft pt-finished-bedding-grid">
+  <div class="pt-section__inner">
+    <div class="pt-section__header pt-home-heading-center">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pt-section__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      <div class="pt-divider-accent pt-divider-accent--center" aria-hidden="true"></div>
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="pt-section__description">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="pt-finished-bedding-grid__grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign image = block.settings.image
+          assign remote_image_url = block.settings.remote_image_url | strip
+          assign image_url = ''
+
+          if image != blank
+            assign image_url = image | image_url: width: 1200
+          elsif remote_image_url != blank
+            assign image_url = remote_image_url
+          endif
+        -%}
+
+        <article class="pt-finished-bedding-grid__card" {{ block.shopify_attributes }}>
+          <a class="pt-finished-bedding-grid__link" href="{{ block.settings.link | default: '#' }}">
+            <div class="pt-finished-bedding-grid__media">
+              {%- if image_url != blank -%}
+                <img src="{{ image_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'pt-finished-bedding-grid__placeholder placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <h3 class="pt-finished-bedding-grid__title">{{ block.settings.title }}</h3>
+          </a>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.primary_button_label != blank or section.settings.secondary_button_label != blank -%}
+      <div class="pt-finished-bedding-grid__actions pt-home-actions-center">
+        {%- if section.settings.primary_button_label != blank -%}
+          <a class="pt-button" href="{{ section.settings.primary_button_link | default: routes.root_url }}">
+            {{ section.settings.primary_button_label | escape }}
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.secondary_button_label != blank -%}
+          <a class="pt-button pt-button--secondary" href="{{ section.settings.secondary_button_link | default: routes.root_url }}">
+            {{ section.settings.secondary_button_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Finished bedding grid",
+  "tag": "section",
+  "class": "section section-finished-bedding-grid",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We also offer finished bedding"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "Quote Now"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label",
+      "default": "Request A Full Catalog"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product card",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Bed Sheet Sets"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "remote_image_url",
+          "label": "Remote image URL"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Finished bedding grid",
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Bed Sheet Sets"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Bedspread Sets"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Comforter Sets"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Duvet Cover Sets"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Quilts Sets"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "title": "Ultrasonic Sets"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

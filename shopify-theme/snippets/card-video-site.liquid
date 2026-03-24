@@ -1,0 +1,39 @@
+{%- liquid
+  assign remote_image_url = block.settings.remote_cover_image_url | strip
+  assign image_url = ''
+  if block.settings.cover_image != blank
+    assign image_url = block.settings.cover_image | image_url: width: 1800
+  elsif remote_image_url != blank
+    assign image_url = remote_image_url
+  endif
+-%}
+
+<article class="pt-site-card" {{ block.shopify_attributes }}>
+  <a
+    class="pt-site-card__media pt-card"
+    href="{{ block.settings.video_url | default: '#' }}"
+    {% if block.settings.video_url != blank %}
+      target="_blank" rel="noopener"
+    {% endif %}
+    aria-label="{{ block.settings.title | escape }}"
+  >
+    {%- if image_url != blank -%}
+      <img src="{{ image_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'pt-site-card__placeholder placeholder-svg' }}
+    {%- endif -%}
+    <span class="pt-site-card__play" aria-hidden="true">▶</span>
+  </a>
+
+  <div class="pt-site-card__meta">
+    <span class="pt-site-card__pin" aria-hidden="true">📍</span>
+    <p class="pt-site-card__address">
+      {%- if block.settings.title != blank -%}
+        <strong>{{ block.settings.title | escape }}</strong>
+      {%- endif -%}
+      {%- if block.settings.address != blank -%}
+        {{ block.settings.address | escape }}
+      {%- endif -%}
+    </p>
+  </div>
+</article>

@@ -1,0 +1,180 @@
+<section class="pt-section pt-company-history-timeline">
+  <div class="pt-section__inner pt-company-history-timeline__inner">
+    <div class="pt-company-history-timeline__intro">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pt-section__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <p class="pt-section__description">{{ section.settings.description }}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="pt-button" href="{{ section.settings.button_link | default: routes.root_url }}">{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+
+    <div class="pt-company-history-timeline__content">
+      <div class="pt-company-history-timeline__years" aria-hidden="true">
+        {%- for block in section.blocks -%}
+          <div class="pt-company-history-timeline__year-item{% if forloop.first %} is-active{% endif %}">
+            <span class="pt-company-history-timeline__year">{{ block.settings.year }}</span>
+            <span class="pt-company-history-timeline__label">{{ block.settings.label }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="pt-company-history-timeline__cards" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign image = block.settings.image
+            assign remote_image_url = block.settings.remote_image_url | strip
+            assign image_url = ''
+            if image != blank
+              assign image_url = image | image_url: width: 900
+            elsif remote_image_url != blank
+              assign image_url = remote_image_url
+            endif
+          -%}
+
+          <article class="pt-company-history-timeline__card{% if forloop.first %} is-active{% endif %}" role="listitem" {{ block.shopify_attributes }}>
+            <div class="pt-company-history-timeline__card-image">
+              {%- if image_url != blank -%}
+                <img src="{{ image_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'pt-company-history-timeline__placeholder placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <div class="pt-company-history-timeline__card-body">
+              <p class="pt-company-history-timeline__card-year">{{ block.settings.year }}</p>
+              <h3 class="pt-company-history-timeline__card-title">{{ block.settings.title }}</h3>
+              <p class="pt-company-history-timeline__card-description">{{ block.settings.description }}</p>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Company history timeline",
+  "tag": "section",
+  "class": "section section-company-history-timeline",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Company History"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Pengfei was founded by my parents in 2004. At that time, our factory was only sold in China. Later, I went to study abroad in the UK and gradually realized that this type of product was also needed abroad. In 2012, the factory was gradually handed over to me, and I founded Perfecttextile Company to sell Chinese textiles overseas. Please continue to follow my perspective to see the history of our company……"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "View MORE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_item",
+      "name": "Timeline item",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year",
+          "default": "2004"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Short label",
+          "default": "born"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "remote_image_url",
+          "label": "Remote image URL"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Pengfei is born"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "At The Beginning ,Our Company Purchase Two DTY Machine (Barmag)Which Import From Germany"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Company history timeline",
+      "blocks": [
+        {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2004",
+            "label": "born",
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/09/微信图片_20240925133852.png",
+            "title": "Pengfei is born",
+            "description": "At The Beginning ,Our Company Purchase Two DTY Machine (Barmag)Which Import From Germany"
+          }
+        },
+        {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2007",
+            "label": "develop",
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/09/微信图片_20240925134212.png",
+            "title": "Scale expansion",
+            "description": "Production capacity expanded and the company entered a new development phase."
+          }
+        },
+        {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2012",
+            "label": "upgrade",
+            "title": "Perfecttextile founded",
+            "description": "The factory was gradually handed over and overseas textile business officially started."
+          }
+        },
+        {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2016",
+            "label": "global",
+            "title": "International expansion",
+            "description": "Product capability and export network continued to grow with a stronger global presence."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

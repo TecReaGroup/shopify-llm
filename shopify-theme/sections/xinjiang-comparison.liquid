@@ -1,0 +1,310 @@
+{%- liquid
+  assign map_image = section.settings.map_image
+  assign remote_map_image_url = section.settings.remote_map_image_url | strip
+  assign map_image_url = ''
+
+  if map_image != blank
+    assign map_image_url = map_image | image_url: width: 1600
+  elsif remote_map_image_url != blank
+    assign map_image_url = remote_map_image_url
+  endif
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} .pt-xinjiang-comparison {
+    --pt-hotspot-xinjiang-x: {{ section.settings.left_hotspot_x }}%;
+    --pt-hotspot-xinjiang-y: {{ section.settings.left_hotspot_y }}%;
+    --pt-hotspot-zhejiang-x: {{ section.settings.right_hotspot_x }}%;
+    --pt-hotspot-zhejiang-y: {{ section.settings.right_hotspot_y }}%;
+  }
+{%- endstyle -%}
+
+<section class="pt-section pt-xinjiang-comparison">
+  <div class="pt-section__inner">
+    <div class="pt-section__header pt-home-heading-center pt-xinjiang-comparison__header">
+      {%- if section.settings.section_heading != blank -%}
+        <h2 class="pt-section__title pt-xinjiang-comparison__title">{{ section.settings.section_heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.section_subheading != blank -%}
+        <p class="pt-section__description pt-xinjiang-comparison__description">
+          {{ section.settings.section_subheading }}
+        </p>
+      {%- endif -%}
+    </div>
+
+    <div class="pt-xinjiang-comparison__map-wrap">
+      <div class="pt-xinjiang-comparison__map-card">
+        {%- if map_image_url != blank -%}
+          <img
+            class="pt-xinjiang-comparison__map-image"
+            src="{{ map_image_url }}"
+            alt="{{ section.settings.section_heading | default: 'Xinjiang comparison map' | escape }}"
+            loading="lazy"
+          >
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'pt-xinjiang-comparison__map-placeholder placeholder-svg' }}
+        {%- endif -%}
+
+        <div class="pt-xinjiang-comparison__hotspot pt-xinjiang-comparison__hotspot--xinjiang">
+          <span class="pt-xinjiang-comparison__hotspot-label">XINJIANG</span>
+          <span class="pt-xinjiang-comparison__hotspot-pin" aria-hidden="true">
+            <span class="pt-xinjiang-comparison__hotspot-pulse"></span>
+            <span class="pt-xinjiang-comparison__hotspot-pulse pt-xinjiang-comparison__hotspot-pulse--delay"></span>
+          </span>
+        </div>
+
+        <div class="pt-xinjiang-comparison__hotspot pt-xinjiang-comparison__hotspot--zhejiang">
+          <span class="pt-xinjiang-comparison__hotspot-label">ZHEJIANG</span>
+          <span class="pt-xinjiang-comparison__hotspot-pin" aria-hidden="true">
+            <span class="pt-xinjiang-comparison__hotspot-pulse"></span>
+            <span class="pt-xinjiang-comparison__hotspot-pulse pt-xinjiang-comparison__hotspot-pulse--delay"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-xinjiang-comparison__table">
+      <div class="pt-xinjiang-comparison__head" aria-hidden="true">
+        <div class="pt-xinjiang-comparison__head-item pt-xinjiang-comparison__head-item--traditional">
+          Traditional Factory
+        </div>
+        <div class="pt-xinjiang-comparison__head-vs">VS</div>
+        <div class="pt-xinjiang-comparison__head-item pt-xinjiang-comparison__head-item--xinjiang">
+          Xinjiang Factory
+        </div>
+      </div>
+
+      <div class="pt-xinjiang-comparison__rows">
+        {%- for block in section.blocks -%}
+          <div class="pt-xinjiang-comparison__row" {{ block.shopify_attributes }}>
+            <article class="pt-xinjiang-comparison__col pt-xinjiang-comparison__col--traditional">
+              {%- if block.settings.traditional_title != blank -%}
+                <h3 class="pt-xinjiang-comparison__col-title">{{ block.settings.traditional_title }}</h3>
+              {%- endif -%}
+
+              {%- assign traditional_points = block.settings.traditional_points | newline_to_br | split: '<br />' -%}
+              {%- if traditional_points.size > 0 -%}
+                <div class="pt-xinjiang-comparison__col-points">
+                  {%- for point in traditional_points -%}
+                    {%- assign trimmed_point = point | strip -%}
+                    {%- if trimmed_point != blank -%}
+                      <p>{{ trimmed_point }}</p>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </article>
+
+            <div class="pt-xinjiang-comparison__vs">VS</div>
+
+            <article class="pt-xinjiang-comparison__col pt-xinjiang-comparison__col--xinjiang">
+              {%- if block.settings.badge_text != blank -%}
+                <span class="pt-xinjiang-comparison__badge">{{ block.settings.badge_text }}</span>
+              {%- endif -%}
+
+              {%- if block.settings.xinjiang_title != blank -%}
+                <h3 class="pt-xinjiang-comparison__col-title">{{ block.settings.xinjiang_title }}</h3>
+              {%- endif -%}
+
+              {%- assign xinjiang_points = block.settings.xinjiang_points | newline_to_br | split: '<br />' -%}
+              {%- if xinjiang_points.size > 0 -%}
+                <div class="pt-xinjiang-comparison__col-points">
+                  {%- for point in xinjiang_points -%}
+                    {%- assign trimmed_point = point | strip -%}
+                    {%- if trimmed_point != blank -%}
+                      <p>{{ trimmed_point }}</p>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </article>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Xinjiang comparison",
+  "tag": "section",
+  "class": "section section-xinjiang-comparison",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Heading",
+      "default": "Beyond Tradition: Why We Choose Xinjiang"
+    },
+    {
+      "type": "text",
+      "id": "section_subheading",
+      "label": "Subheading",
+      "default": "A strategic upgrade in energy, supply chain control, and intelligent manufacturing."
+    },
+    {
+      "type": "image_picker",
+      "id": "map_image",
+      "label": "Map image"
+    },
+    {
+      "type": "text",
+      "id": "remote_map_image_url",
+      "label": "Remote map image URL",
+      "default": "https://perfectextile.com/wp-content/uploads/2025/12/xinjiang.png"
+    },
+    {
+      "type": "range",
+      "id": "left_hotspot_x",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Xinjiang hotspot horizontal position",
+      "default": 31
+    },
+    {
+      "type": "range",
+      "id": "left_hotspot_y",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Xinjiang hotspot vertical position",
+      "default": 23
+    },
+    {
+      "type": "range",
+      "id": "right_hotspot_x",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Zhejiang hotspot horizontal position",
+      "default": 74
+    },
+    {
+      "type": "range",
+      "id": "right_hotspot_y",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Zhejiang hotspot vertical position",
+      "default": 47
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_row",
+      "name": "Comparison row",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "row_title",
+          "label": "Row title",
+          "default": "Energy"
+        },
+        {
+          "type": "text",
+          "id": "traditional_title",
+          "label": "Traditional title",
+          "default": "Energy Efficiency"
+        },
+        {
+          "type": "textarea",
+          "id": "traditional_points",
+          "label": "Traditional points",
+          "default": "High industrial electricity rates\nSeasonal power quotas"
+        },
+        {
+          "type": "text",
+          "id": "xinjiang_title",
+          "label": "Xinjiang title",
+          "default": "Unmatched Energy Advantage"
+        },
+        {
+          "type": "textarea",
+          "id": "xinjiang_points",
+          "label": "Xinjiang points",
+          "default": "Unbeatable energy costs\n24/7 production stability"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text",
+          "default": "STRATEGIC UPGRADE"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Xinjiang comparison",
+      "blocks": [
+        {
+          "type": "comparison_row",
+          "settings": {
+            "row_title": "Energy",
+            "traditional_title": "Energy Efficiency",
+            "traditional_points": "High industrial electricity rates\nSeasonal power quotas",
+            "xinjiang_title": "Unmatched Energy Advantage",
+            "xinjiang_points": "Unbeatable energy costs\n24/7 production stability",
+            "badge_text": "STRATEGIC UPGRADE"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "row_title": "Supply Chain",
+            "traditional_title": "Supply Chain Structure",
+            "traditional_points": "Scattered sourcing across multiple vendors",
+            "xinjiang_title": "Fully Vertical Integration",
+            "xinjiang_points": "Yarn → Weaving → Dyeing → Sewing\nNo middlemen, no markups",
+            "badge_text": "STRATEGIC UPGRADE"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "row_title": "Logistics",
+            "traditional_title": "Logistics & Lead Time",
+            "traditional_points": "Congested coastal ports\nRising inland transport costs",
+            "xinjiang_title": "Gateway to Eurasia",
+            "xinjiang_points": "Direct rail & road access\nBelt & Road optimized routes",
+            "badge_text": "STRATEGIC UPGRADE"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "row_title": "Quality",
+            "traditional_title": "Traceability & Quality",
+            "traditional_points": "Outsourced stages\nQuality blind spots",
+            "xinjiang_title": "End-to-End Control",
+            "xinjiang_points": "Entire process in-house\n100% quality consistency",
+            "badge_text": "STRATEGIC UPGRADE"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "row_title": "Manufacturing",
+            "traditional_title": "Manufacturing Model",
+            "traditional_points": "Legacy lines\nManual decision-making",
+            "xinjiang_title": "Industry 4.0 Smart Factory",
+            "xinjiang_points": "Fully digitalized\nData-driven & intelligent production",
+            "badge_text": "STRATEGIC UPGRADE"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

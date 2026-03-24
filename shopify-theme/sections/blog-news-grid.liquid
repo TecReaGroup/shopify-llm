@@ -1,0 +1,258 @@
+{{ 'sections-home.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign section_eyebrow = section.settings.eyebrow | strip
+  assign section_heading = section.settings.heading | strip
+  assign button_label = section.settings.button_label | strip
+-%}
+
+<section class="pt-blog-news-grid section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="pt-blog-news-grid__header">
+      <div class="pt-blog-news-grid__heading-group">
+        {%- if section_eyebrow != blank -%}
+          <p class="pt-blog-news-grid__eyebrow">{{ section_eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section_heading != blank -%}
+          <h2 class="pt-blog-news-grid__heading h1">{{ section_heading | escape }}</h2>
+        {%- endif -%}
+      </div>
+
+      {%- if button_label != blank -%}
+        <a
+          class="button pt-button pt-button--secondary"
+          {% if section.settings.button_link != blank %}
+            href="{{ section.settings.button_link }}"
+          {% else %}
+            role="link" aria-disabled="true"
+          {% endif %}
+        >
+          {{ button_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="pt-blog-news-grid__cards" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign remote_image_url = block.settings.remote_image_url | strip
+          assign image_url = ''
+          if block.settings.image != blank
+            assign image_url = block.settings.image | image_url: width: 1200
+          elsif remote_image_url != blank
+            assign image_url = remote_image_url
+          endif
+        -%}
+        <article class="pt-blog-news-grid__card" {{ block.shopify_attributes }} role="listitem">
+          <a
+            class="pt-blog-news-grid__card-link"
+            {% if block.settings.link != blank %}
+              href="{{ block.settings.link }}"
+            {% else %}
+              role="link" aria-disabled="true"
+            {% endif %}
+          >
+            <div class="pt-blog-news-grid__media{% if image_url == blank %} pt-blog-news-grid__media--placeholder{% endif %}">
+              {%- if image_url != blank -%}
+                <img
+                  src="{{ image_url }}"
+                  alt="{{ block.settings.alt_text | default: block.settings.title | escape }}"
+                  loading="lazy"
+                  width="720"
+                  height="460"
+                >
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+              {%- endif -%}
+            </div>
+
+            <div class="pt-blog-news-grid__content">
+              {%- if block.settings.date_text != blank -%}
+                <p class="pt-blog-news-grid__date">{{ block.settings.date_text | escape }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.title != blank -%}
+                <h3 class="pt-blog-news-grid__title">{{ block.settings.title | escape }}</h3>
+              {%- endif -%}
+
+              {%- if block.settings.excerpt != blank -%}
+                <p class="pt-blog-news-grid__excerpt">{{ block.settings.excerpt | escape }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.read_more_label != blank -%}
+                <span class="pt-blog-news-grid__read-more">{{ block.settings.read_more_label | escape }}</span>
+              {%- endif -%}
+            </div>
+          </a>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PT Blog news grid",
+  "tag": "section",
+  "class": "section section-pt-blog-news-grid",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Blog & News"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Articles About Perfectextile"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "View More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article_card",
+      "name": "Article card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "remote_image_url",
+          "label": "Remote image URL"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text",
+          "default": "Blog article"
+        },
+        {
+          "type": "text",
+          "id": "date_text",
+          "label": "Date",
+          "default": "December 10, 2024"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Article title"
+        },
+        {
+          "type": "textarea",
+          "id": "excerpt",
+          "label": "Excerpt",
+          "default": "Article summary."
+        },
+        {
+          "type": "text",
+          "id": "read_more_label",
+          "label": "Read more label",
+          "default": "Read More"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "PT Blog news grid",
+      "blocks": [
+        {
+          "type": "article_card",
+          "settings": {
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/11/your-paragraph-text-1.webp",
+            "date_text": "November 28, 2024",
+            "title": "Why manufacturers still choose microfiber bedding fabric",
+            "excerpt": "A quick overview of performance, durability, and sourcing advantages for wholesale bedding programs.",
+            "read_more_label": "Read More"
+          }
+        },
+        {
+          "type": "article_card",
+          "settings": {
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/11/your-paragraph-text-2.webp",
+            "date_text": "December 05, 2024",
+            "title": "How integrated weaving and dyeing improves delivery control",
+            "excerpt": "See how vertical production shortens lead times and improves consistency for export bedding orders.",
+            "read_more_label": "Read More"
+          }
+        },
+        {
+          "type": "article_card",
+          "settings": {
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/11/your-paragraph-text-3.webp",
+            "date_text": "December 12, 2024",
+            "title": "What buyers should check before choosing a bedding factory",
+            "excerpt": "From certifications to production capacity, these checkpoints reduce sourcing risk and improve outcomes.",
+            "read_more_label": "Read More"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+{% endstylesheet %}
