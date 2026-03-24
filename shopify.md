@@ -11,7 +11,7 @@ Shopify 1:1 复刻 [perfectextile](https://perfectextile.com/)的主页，只需
 在写代码之前，先把原站的“骨架”和“皮肉”扒下来。
 
 1. 提取视觉资产 (Assets)：
-  在 ./lib 下编写 python 脚本一键下载 `perfectextile.com` 的所有图片、Logo、Icon（SVG 格式）。插件查出它使用的主要字体（如 Roboto, Montserrat 等），以及提取主色调（Hex 颜色代码）。
+  在 ./lib 下编写 python 脚本一键下载 `perfectextile.com` 的所有 html css js, 图片、Logo、Icon（SVG 格式）。插件查出它使用的主要字体（如 Roboto, Montserrat 等），以及提取主色调（Hex 颜色代码）。
 1. 分析网页结构 (AI 辅助)：
    使用 Prompt：
      > *"这是一个纺织品 B2B 网站的截图。请帮我将这个页面自上而下拆解为 Shopify 的 Section 模块，列出每个模块需要哪些自定义字段（如：图片、标题、富文本、按钮链接），以 JSON 结构输出。"*

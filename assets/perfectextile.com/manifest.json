@@ -1,0 +1,16 @@
+{
+  "base_url": "https://perfectextile.com/",
+  "generated_at": "2026-03-24T02:21:23Z",
+  "pages_downloaded": 0,
+  "assets_downloaded": 0,
+  "page_files": [],
+  "asset_files": [],
+  "fonts_top": [],
+  "colors_top": [],
+  "failures": [
+    {
+      "url": "https://perfectextile.com/",
+      "error": "HTTPSConnectionPool(host='perfectextile.com', port=443): Max retries exceeded with url: / (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None)))"
+    }
+  ]
+}
