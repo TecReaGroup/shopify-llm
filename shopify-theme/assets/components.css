@@ -5,6 +5,7 @@
   min-height: 18rem;
   padding: 3rem;
   background: var(--pt-color-bg);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 }
 
 .pt-site-card {
@@ -17,7 +18,8 @@
   position: relative;
   display: block;
   overflow: hidden;
-  border-radius: 2rem;
+  border-radius: 0;
+  background: #fff;
   box-shadow: var(--pt-shadow-card);
 }
 
@@ -27,6 +29,7 @@
   width: 100%;
   aspect-ratio: 1.58;
   object-fit: cover;
+  background: #fff;
 }
 
 .pt-site-card__play {
@@ -50,7 +53,7 @@
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  padding-inline: 0.4rem;
+  padding: 0.4rem 0 0;
 }
 
 .pt-site-card__pin {

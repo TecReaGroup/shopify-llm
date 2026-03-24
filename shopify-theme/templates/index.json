@@ -35,17 +35,17 @@
         "selling_point_4"
       ],
       "settings": {
-        "eyebrow": "Perfectextile",
+        "eyebrow": "",
         "heading_line_1": "Redefining Polyester: From Fiber to Finish Home Beddings.",
         "heading_line_2": "Driving Textile Competitiveness Through Xinjiang’s Energy Edge",
-        "cta_label": "Quote Now",
+        "cta_label": "QUOTE NOW",
         "cta_link": "/contact-us",
         "show_pattern_divider": true,
         "remote_background_image_url": "https://perfectextile.com/wp-content/uploads/2024/10/20241012104050.jpg",
         "remote_background_video_url": "",
-        "overlay_opacity": 45,
-        "hero_height_desktop": 720,
-        "hero_height_mobile": 560
+        "overlay_opacity": 20,
+        "hero_height_desktop": 640,
+        "hero_height_mobile": 520
       }
     },
     "factory_stats_sites": {
@@ -504,26 +504,38 @@
             "year": "2007",
             "label": "develop",
             "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/09/微信图片_20240925134212.png",
-            "title": "Scale expansion",
-            "description": "Production capacity expanded and the company entered a new development phase."
+            "title": "Expand equipment",
+            "description": "Our Company Purhcase 4 DTY Machine Same Brand ( Barmag) In One Time ,And Increase About 200 Water Jet Machine"
           }
         },
         "timeline_item_3": {
           "type": "timeline_item",
           "settings": {
             "year": "2012",
-            "label": "upgrade",
-            "title": "Perfecttextile founded",
-            "description": "The factory was gradually handed over and overseas textile business officially started."
+            "label": "establish",
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/09/微信图片_20240925134222.png",
+            "title": "Establish an International Trade Department",
+            "description": "Our Company Set Up A Inetrnational Trading Company To Serving The Global Market"
           }
         },
         "timeline_item_4": {
           "type": "timeline_item",
           "settings": {
             "year": "2016",
-            "label": "global",
-            "title": "International expansion",
-            "description": "Product capability and export network continued to grow with a stronger global presence."
+            "label": "expand",
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/09/微信图片_20240925134228.png",
+            "title": "Bulid Up New Factory To Do Home Textile Products",
+            "description": "We Have Coordinated Process From POY -DTY- Wave Fabric- Printing /Dyed Fabric – Home Textile Products ."
+          }
+        },
+        "timeline_item_5": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2019",
+            "label": "achieve",
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/09/1-610-%E5%89%AF%E6%9C%AC.png",
+            "title": "Bulid Business Relationship With More Than 100+ Customer .",
+            "description": "The Total Output Value Will More Than 100 Million , The Year -On Year Growth Reach To 30% ."
           }
         }
       },
@@ -531,7 +543,8 @@
         "timeline_item_1",
         "timeline_item_2",
         "timeline_item_3",
-        "timeline_item_4"
+        "timeline_item_4",
+        "timeline_item_5"
       ],
       "settings": {
         "heading": "Company History",
@@ -658,9 +671,9 @@
         "eyebrow": "Ready to choose us？",
         "heading": "Ready to choose us？",
         "subheading": "Customers from all over the world have affirmed us",
-        "description": "From North America to Europe, the Middle East, and beyond, global buyers continue to choose Perfectextile for stable quality, competitive pricing, and responsive manufacturing support.",
+        "description": "Thank you for your interest in our microfiber fabric and bedding! We look forward to providing you with quality service and excellent products. If you are ready to choose us, please leave your name, phone number and email address, and our team will contact you immediately to provide you with detailed product information and quotation. Our image is defined by service and products, and we look forward to creating a satisfactory experience for you.",
         "button_label": "get started",
-        "button_link": "/pages/contact"
+        "button_link": "#"
       }
     },
     "blog_news_grid": {
@@ -669,34 +682,34 @@
         "article_card_1": {
           "type": "article_card",
           "settings": {
-            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/11/your-paragraph-text-1.webp",
-            "date_text": "November 28, 2024",
-            "title": "Why manufacturers still choose microfiber bedding fabric",
-            "excerpt": "A quick overview of performance, durability, and sourcing advantages for wholesale bedding programs.",
-            "read_more_label": "Read More",
-            "link": "https://perfectextile.com/blog/"
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2026/02/fabric-bedding.jpg",
+            "date_text": "10/02/2026",
+            "title": "What Is Geometric Pink 3D Embossed Fabric Bedding",
+            "excerpt": "Geometric Pink 3D Embossed Fabric bedding features bold patterns, soft texture, and durable materials for a modern, comfortable, and hypoallergenic sleep.",
+            "read_more_label": "Read more",
+            "link": "https://perfectextile.com/blogs/geometric-pink-3d-embossed-fabric-bedding-features/"
           }
         },
         "article_card_2": {
           "type": "article_card",
           "settings": {
-            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/11/your-paragraph-text-2.webp",
-            "date_text": "December 05, 2024",
-            "title": "How integrated weaving and dyeing improves delivery control",
-            "excerpt": "See how vertical production shortens lead times and improves consistency for export bedding orders.",
-            "read_more_label": "Read More",
-            "link": "https://perfectextile.com/blog/"
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2026/02/jacquard-bedding.jpg",
+            "date_text": "10/02/2026",
+            "title": "What Makes Polyester Jacquard Fabric Bedding Unique in 2026",
+            "excerpt": "Polyester Jacquard Fabric bedding offers lasting durability, elegant woven designs, easy care, and vibrant textures for a stylish, comfortable bedroom.",
+            "read_more_label": "Read more",
+            "link": "https://perfectextile.com/blogs/polyester-jacquard-fabric-bedding-features-and-benefits-2026/"
           }
         },
         "article_card_3": {
           "type": "article_card",
           "settings": {
-            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2024/11/your-paragraph-text-3.webp",
-            "date_text": "December 12, 2024",
-            "title": "What buyers should check before choosing a bedding factory",
-            "excerpt": "From certifications to production capacity, these checkpoints reduce sourcing risk and improve outcomes.",
-            "read_more_label": "Read More",
-            "link": "https://perfectextile.com/blog/"
+            "remote_image_url": "https://perfectextile.com/wp-content/uploads/2026/02/ultrasonic-bedding.jpg",
+            "date_text": "10/02/2026",
+            "title": "What Is Polyester Ultrasonic Fabric Bedding and How Is It Made",
+            "excerpt": "Polyester Ultrasonic Fabric bedding bonds fibers with sound waves for a seamless, durable, and soft finish. Learn how this bedding is made and its benefits.",
+            "read_more_label": "Read more",
+            "link": "https://perfectextile.com/blogs/polyester-ultrasonic-fabric-bedding-what-it-is-and-how-made/"
           }
         }
       },

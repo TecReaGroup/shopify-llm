@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfectextile Homepage Replica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --pt-color-primary: #ff8c00;
+        --pt-color-primary-hover: #e67600;
+        --pt-color-heading: #111111;
+        --pt-color-text: #222222;
+        --pt-color-muted: #666666;
+        --pt-color-border: #e7e7e7;
+        --pt-color-surface: #f5f5f5;
+        --pt-color-surface-strong: #f1f1f1;
+        --pt-color-dark: #050505;
+        --pt-color-white: #ffffff;
+        --pt-color-overlay: rgba(0, 0, 0, 0.48);
+        --pt-shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.08);
+        --pt-shadow-card: 0 16px 50px rgba(0, 0, 0, 0.12);
+        --pt-radius-card: 22px;
+        --pt-radius-pill: 999px;
+        --pt-container: 1220px;
+        --pt-transition: 220ms ease;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Open Sans", Arial, sans-serif;
+        color: var(--pt-color-text);
+        background: var(--pt-color-white);
+        line-height: 1.6;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .pt-page {
+        overflow-x: hidden;
+      }
+
+      .pt-container {
+        width: min(calc(100% - 32px), var(--pt-container));
+        margin: 0 auto;
+      }
+
+      .pt-section {
+        padding: 88px 0;
+      }
+
+      .pt-section--compact {
+        padding: 64px 0;
+      }
+
+      .pt-section-heading {
+        max-width: 760px;
+        margin-bottom: 36px;
+      }
+
+      .pt-section-heading--center {
+        margin-inline: auto;
+        text-align: center;
+      }
+
+      .pt-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        color: var(--pt-color-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .pt-kicker::before,
+      .pt-kicker::after {
+        content: "";
+        width: 26px;
+        height: 1px;
+        background: currentColor;
+        opacity: 0.45;
+      }
+
+      .pt-title {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(32px, 4vw, 54px);
+        line-height: 1.08;
+        font-weight: 800;
+        color: var(--pt-color-heading);
+      }
+
+      .pt-title span {
+        color: var(--pt-color-primary);
+      }
+
+      .pt-subtitle {
+        margin: 14px 0 0;
+        font-size: 17px;
+        color: var(--pt-color-muted);
+      }
+
+      .pt-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        min-height: 50px;
+        padding: 0 26px;
+        border: 0;
+        border-radius: var(--pt-radius-pill);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--pt-color-white);
+        background: var(--pt-color-primary);
+        box-shadow: var(--pt-shadow-soft);
+        transition: transform var(--pt-transition), background var(--pt-transition),
+          box-shadow var(--pt-transition);
+        cursor: pointer;
+      }
+
+      .pt-button:hover {
+        transform: translateY(-2px);
+        background: var(--pt-color-primary-hover);
+        box-shadow: 0 18px 40px rgba(255, 140, 0, 0.28);
+      }
+
+      .pt-button--ghost {
+        color: var(--pt-color-heading);
+        background: rgba(255, 255, 255, 0.88);
+      }
+
+      .pt-header {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        backdrop-filter: blur(14px);
+        background: rgba(255, 255, 255, 0.94);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .pt-header__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        min-height: 86px;
+      }
+
+      .pt-header__brand img {
+        width: 200px;
+        height: auto;
+      }
+
+      .pt-nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        flex: 1;
+        justify-content: center;
+      }
+
+      .pt-nav__item {
+        position: relative;
+        padding: 32px 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #121212;
+      }
+
+      .pt-nav__item::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 23px;
+        width: 100%;
+        height: 2px;
+        background: var(--pt-color-primary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--pt-transition);
+      }
+
+      .pt-nav__item:hover::after {
+        transform: scaleX(1);
+      }
+
+      .pt-header__cta {
+        flex-shrink: 0;
+      }
+
+      .pt-hero {
+        position: relative;
+        min-height: 92vh;
+        display: flex;
+        align-items: center;
+        color: var(--pt-color-white);
+        background-image: linear-gradient(var(--pt-color-overlay), var(--pt-color-overlay)),
+          url("https://perfectextile.com/wp-content/uploads/2025/12/xinjiang-factory-1.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .pt-hero__content {
+        width: min(100%, 790px);
+        padding: 96px 0 112px;
+      }
+
+      .pt-hero__eyebrow {
+        display: inline-flex;
+        padding: 7px 14px;
+        margin-bottom: 20px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .pt-hero__title {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(42px, 6vw, 72px);
+        line-height: 1.06;
+        font-weight: 800;
+      }
+
+      .pt-hero__title strong {
+        color: var(--pt-color-primary);
+      }
+
+      .pt-hero__lead {
+        margin: 22px 0 0;
+        max-width: 620px;
+        font-size: 19px;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .pt-hero__points {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 22px;
+        margin: 30px 0 38px;
+        padding: 0;
+        list-style: none;
+        max-width: 760px;
+      }
+
+      .pt-hero__points li {
+        position: relative;
+        padding-left: 24px;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .pt-hero__points li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--pt-color-primary);
+        box-shadow: 0 0 0 6px rgba(255, 140, 0, 0.16);
+      }
+
+      .pt-hero__actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .pt-stats {
+        margin-top: -48px;
+        position: relative;
+        z-index: 3;
+      }
+
+      .pt-stats__grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .pt-stat-card {
+        padding: 28px 26px;
+        border-radius: var(--pt-radius-card);
+        background: var(--pt-color-white);
+        box-shadow: var(--pt-shadow-card);
+      }
+
+      .pt-stat-card__value {
+        display: block;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 40px;
+        line-height: 1;
+        font-weight: 800;
+        color: var(--pt-color-heading);
+      }
+
+      .pt-stat-card__label {
+        display: block;
+        margin-top: 12px;
+        color: var(--pt-color-muted);
+        font-size: 15px;
+      }
+
+      .pt-catalog {
+        padding-top: 100px;
+      }
+
+      .pt-category-grid {
+        display: grid;
+        grid-template-columns: 1.55fr 1fr 1fr;
+        gap: 24px;
+      }
+
+      .pt-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 28px;
+        background: #ddd;
+        box-shadow: var(--pt-shadow-soft);
+        min-height: 290px;
+      }
+
+      .pt-card--tall {
+        min-height: 604px;
+      }
+
+      .pt-card__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 500ms ease;
+      }
+
+      .pt-card:hover .pt-card__image {
+        transform: scale(1.05);
+      }
+
+      .pt-card__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.12));
+      }
+
+      .pt-card__body {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 26px;
+        color: var(--pt-color-white);
+      }
+
+      .pt-card__tag {
+        display: inline-flex;
+        align-self: flex-start;
+        margin-bottom: 12px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.16);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .pt-card__title {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 28px;
+        line-height: 1.1;
+        font-weight: 800;
+      }
+
+      .pt-card__text {
+        margin: 12px 0 0;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.88);
+      }
+
+      .pt-card__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .pt-card-stack {
+        display: grid;
+        gap: 24px;
+      }
+
+      .pt-video-showcase {
+        background: linear-gradient(180deg, #fbfbfb 0%, #f1f1f1 100%);
+      }
+
+      .pt-video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px;
+      }
+
+      .pt-video-card {
+        border-radius: 28px;
+        overflow: hidden;
+        background: var(--pt-color-white);
+        box-shadow: var(--pt-shadow-card);
+      }
+
+      .pt-video-card__media {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+      }
+
+      .pt-video-card__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .pt-video-card__play {
+        position: absolute;
+        inset: auto auto 26px 26px;
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--pt-color-primary);
+        font-size: 24px;
+        box-shadow: var(--pt-shadow-card);
+      }
+
+      .pt-video-card__content {
+        padding: 26px;
+      }
+
+      .pt-video-card__title {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 24px;
+        line-height: 1.2;
+        font-weight: 800;
+      }
+
+      .pt-video-card__meta {
+        margin-top: 10px;
+        color: var(--pt-color-muted);
+        font-size: 15px;
+      }
+
+      .pt-compare {
+        padding-top: 96px;
+      }
+
+      .pt-compare__shell {
+        border-radius: 32px;
+        padding: 34px;
+        background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+        box-shadow: var(--pt-shadow-card);
+      }
+
+      .pt-compare__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .pt-compare-card {
+        border: 1px solid var(--pt-color-border);
+        border-radius: 24px;
+        padding: 24px;
+        background: var(--pt-color-white);
+      }
+
+      .pt-compare-card--featured {
+        border-color: rgba(255, 140, 0, 0.35);
+        background: linear-gradient(180deg, rgba(255, 140, 0, 0.07), rgba(255, 140, 0, 0.02));
+      }
+
+      .pt-compare-card__label {
+        display: inline-flex;
+        margin-bottom: 16px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: var(--pt-color-surface);
+        color: var(--pt-color-heading);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .pt-compare-card__title {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--pt-color-heading);
+      }
+
+      .pt-compare-card__list {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 12px;
+      }
+
+      .pt-compare-card__list li {
+        position: relative;
+        padding-left: 24px;
+        color: var(--pt-color-muted);
+      }
+
+      .pt-compare-card__list li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--pt-color-primary);
+        font-weight: 800;
+      }
+
+      .pt-process,
+      .pt-testimonials,
+      .pt-history,
+      .pt-blog,
+      .pt-footer {
+        background: var(--pt-color-white);
+      }
+
+      .pt-carousel {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .pt-carousel__item {
+        overflow: hidden;
+        border-radius: 22px;
+        min-height: 310px;
+        background: #dedede;
+        box-shadow: var(--pt-shadow-soft);
+      }
+
+      .pt-carousel__item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .pt-testimonials__grid {
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .pt-testimonials__aside {
+        padding: 18px 0;
+      }
+
+      .pt-review-stack {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .pt-review-card {
+        border-radius: 22px;
+        overflow: hidden;
+        min-height: 420px;
+        box-shadow: var(--pt-shadow-soft);
+      }
+
+      .pt-review-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .pt-history__layout {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 30px;
+        align-items: start;
+      }
+
+      .pt-timeline {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .pt-timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 54px;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(255, 140, 0, 0.25), rgba(255, 140, 0, 0.8));
+      }
+
+      .pt-timeline__item {
+        position: relative;
+      }
+
+      .pt-timeline__dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--pt-color-primary);
+        box-shadow: 0 0 0 8px rgba(255, 140, 0, 0.14);
+        position: relative;
+        z-index: 1;
+        margin: 46px 0 24px;
+      }
+
+      .pt-timeline__year {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--pt-color-heading);
+      }
+
+      .pt-timeline__phase {
+        display: block;
+        margin-top: 3px;
+        color: var(--pt-color-primary);
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .pt-timeline__card {
+        margin-top: 18px;
+        overflow: hidden;
+        border-radius: 22px;
+        background: var(--pt-color-white);
+        box-shadow: var(--pt-shadow-soft);
+        border: 1px solid var(--pt-color-border);
+      }
+
+      .pt-timeline__card img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
+      .pt-timeline__card-body {
+        padding: 18px;
+      }
+
+      .pt-timeline__card-title {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .pt-timeline__card-text {
+        margin: 10px 0 0;
+        color: var(--pt-color-muted);
+        font-size: 14px;
+      }
+
+      .pt-certificate-grid,
+      .pt-blog-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .pt-certificate-grid img {
+        width: 100%;
+        aspect-ratio: 3 / 4.2;
+        object-fit: cover;
+        border-radius: 18px;
+        box-shadow: var(--pt-shadow-soft);
+      }
+
+      .pt-blog-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .pt-blog-card {
+        overflow: hidden;
+        border-radius: 24px;
+        background: var(--pt-color-white);
+        border: 1px solid var(--pt-color-border);
+        box-shadow: var(--pt-shadow-soft);
+      }
+
+      .pt-blog-card__image {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+      }
+
+      .pt-blog-card__body {
+        padding: 22px;
+      }
+
+      .pt-blog-card__date {
+        display: inline-flex;
+        margin-bottom: 10px;
+        color: var(--pt-color-muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .pt-blog-card__title {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 22px;
+        line-height: 1.3;
+        font-weight: 800;
+        color: var(--pt-color-heading);
+      }
+
+      .pt-blog-card__text {
+        margin: 12px 0 0;
+        color: var(--pt-color-muted);
+        font-size: 15px;
+      }
+
+      .pt-blog-card__link {
+        display: inline-flex;
+        margin-top: 18px;
+        color: var(--pt-color-primary);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .pt-cta {
+        color: var(--pt-color-white);
+        background: linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.58)),
+          url("https://perfectextile.com/wp-content/uploads/2024/10/微信图片_20240904163443.jpg") center/cover;
+      }
+
+      .pt-cta__inner {
+        max-width: 860px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .pt-cta__inner .pt-title,
+      .pt-cta__inner .pt-subtitle {
+        color: var(--pt-color-white);
+      }
+
+      .pt-footer {
+        background: #0d0d0d;
+        color: rgba(255, 255, 255, 0.84);
+      }
+
+      .pt-footer__grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.8fr 0.8fr 1fr;
+        gap: 28px;
+      }
+
+      .pt-footer__logo {
+        width: 210px;
+        filter: brightness(0) invert(1);
+      }
+
+      .pt-footer__title {
+        margin: 0 0 16px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--pt-color-white);
+      }
+
+      .pt-footer__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .pt-footer__meta {
+        margin-top: 16px;
+        color: rgba(255, 255, 255, 0.62);
+        font-size: 14px;
+      }
+
+      .pt-footer__socials {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .pt-footer__socials a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.08);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .pt-footer__bottom {
+        margin-top: 46px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+        color: rgba(255, 255, 255, 0.56);
+        font-size: 13px;
+      }
+
+      @media (max-width: 1180px) {
+        .pt-nav {
+          gap: 18px;
+        }
+
+        .pt-category-grid,
+        .pt-video-grid,
+        .pt-testimonials__grid,
+        .pt-history__layout,
+        .pt-footer__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pt-carousel,
+        .pt-certificate-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .pt-blog-grid,
+        .pt-review-stack,
+        .pt-compare__grid,
+        .pt-timeline,
+        .pt-stats__grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .pt-card--tall {
+          min-height: 360px;
+        }
+      }
+
+      @media (max-width: 860px) {
+        .pt-header__inner {
+          min-height: 74px;
+        }
+
+        .pt-nav,
+        .pt-header__cta {
+          display: none;
+        }
+
+        .pt-hero {
+          min-height: auto;
+        }
+
+        .pt-hero__content {
+          padding: 76px 0 84px;
+        }
+
+        .pt-hero__points,
+        .pt-carousel,
+        .pt-certificate-grid,
+        .pt-blog-grid,
+        .pt-review-stack,
+        .pt-compare__grid,
+        .pt-timeline,
+        .pt-stats__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pt-section {
+          padding: 72px 0;
+        }
+
+        .pt-stats {
+          margin-top: -24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pt-page">
+      <header class="pt-header">
+        <div class="pt-container pt-header__inner">
+          <a class="pt-header__brand" href="#top">
+            <img
+              src="https://perfectextile.com/wp-content/uploads/2024/08/Black-White-Minimalist-Logo-3_%E5%89%AF%E6%9C%AC.png"
+              alt="Perfectextile"
+            />
+          </a>
+          <nav class="pt-nav" aria-label="Primary navigation">
+            <a class="pt-nav__item" href="#top">HOME</a>
+            <a class="pt-nav__item" href="#catalog">BEDDING FABRIC</a>
+            <a class="pt-nav__item" href="#catalog">BEDDING</a>
+            <a class="pt-nav__item" href="#history">ABOUT</a>
+            <a class="pt-nav__item" href="#blog">BLOG</a>
+            <a class="pt-nav__item" href="#footer">CONTACT</a>
+          </nav>
+          <a class="pt-button pt-header__cta" href="#cta">Get A Quote</a>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="pt-hero">
+          <div class="pt-container">
+            <div class="pt-hero__content">
+              <span class="pt-hero__eyebrow">Perfectextile · Since 2004</span>
+              <h1 class="pt-hero__title">
+                Redefining Polyester: From Fiber to Finish
+                <strong>home beddings</strong>
+              </h1>
+              <p class="pt-hero__lead">
+                Driving textile competitiveness through Xinjiang’s energy edge,
+                vertically integrated production, and globally oriented design.
+              </p>
+              <ul class="pt-hero__points">
+                <li>Manufacturing vendor with over 20 years experience</li>
+                <li>Vertical setup with cost leadership and end-to-end management</li>
+                <li>Certified: OEKO-TEX 100, GRS</li>
+                <li>Pattern designers based abroad and in China</li>
+              </ul>
+              <div class="pt-hero__actions">
+                <a class="pt-button" href="#cta">Quote Now</a>
+                <a class="pt-button pt-button--ghost" href="#video-showcase">Watch Factory Story</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pt-stats">
+          <div class="pt-container pt-stats__grid">
+            <article class="pt-stat-card">
+              <span class="pt-stat-card__value">21</span>
+              <span class="pt-stat-card__label">Years experience</span>
+            </article>
+            <article class="pt-stat-card">
+              <span class="pt-stat-card__value">80M+</span>
+              <span class="pt-stat-card__label">Meters annual output</span>
+            </article>
+            <article class="pt-stat-card">
+              <span class="pt-stat-card__value">66,780m²</span>
+              <span class="pt-stat-card__label">Factory floor space</span>
+            </article>
+            <article class="pt-stat-card">
+              <span class="pt-stat-card__value">50+</span>
+              <span class="pt-stat-card__label">Countries around the world</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="pt-section pt-catalog" id="catalog">
+          <div class="pt-container">
+            <div class="pt-section-heading pt-section-heading--center">
+              <span class="pt-kicker">Category Highlights</span>
+              <h2 class="pt-title">Structured collections for <span>fabric and bedding</span></h2>
+              <p class="pt-subtitle">
+                Rebuilt with clean reusable card patterns while preserving the original
+                homepage’s visual hierarchy, editorial spacing, and premium showroom feel.
+              </p>
+            </div>
+
+            <div class="pt-category-grid">
+              <article class="pt-card pt-card--tall">
+                <img
+                  class="pt-card__image"
+                  src="https://perfectextile.com/wp-content/uploads/2024/12/%E8%83%BD%E5%B8%AE%E6%88%91%E7%94%BB%E5%87%BA%E4%B8%8D%E5%90%8Ccolor%E7%9A%84polyester-32.png"
+                  alt="Tufted fabric"
+                />
+                <div class="pt-card__overlay"></div>
+                <div class="pt-card__body">
+                  <span class="pt-card__tag">Recent Products</span>
+                  <h3 class="pt-card__title">Tufted fabric</h3>
+                  <p class="pt-card__text">
+                    Plush texture, layered embossing and premium bedding-facing finishes.
+                  </p>
+                  <span class="pt-card__link">Explore collection →</span>
+                </div>
+              </article>
+
+              <div class="pt-card-stack">
+                <article class="pt-card">
+                  <img
+                    class="pt-card__image"
+                    src="https://perfectextile.com/wp-content/uploads/2024/12/%E8%83%BD%E5%B8%AE%E6%88%91%E7%94%BB%E5%87%BA%E4%B8%8D%E5%90%8Ccolor%E7%9A%84polyester-35.png"
+                    alt="Waffle fabric"
+                  />
+                  <div class="pt-card__overlay"></div>
+                  <div class="pt-card__body">
+                    <span class="pt-card__tag">Bedding Fabric</span>
+                    <h3 class="pt-card__title">Waffle fabric</h3>
+                    <p class="pt-card__text">Durable, tactile and visually dimensional.</p>
+                  </div>
+                </article>
+                <article class="pt-card">
+                  <img
+                    class="pt-card__image"
+                    src="https://perfectextile.com/wp-content/uploads/2024/12/non-woven-fabric-roll-500x500_%E5%89%AF%E6%9C%AC.png"
+                    alt="Microfiber polyester"
+                  />
+                  <div class="pt-card__overlay"></div>
+                  <div class="pt-card__body">
+                    <span class="pt-card__tag">Core Range</span>
+                    <h3 class="pt-card__title">Microfiber polyester</h3>
+                    <p class="pt-card__text">Colorfast, economical and export-oriented.</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="pt-card-stack">
+                <article class="pt-card">
+                  <img
+                    class="pt-card__image"
+                    src="https://perfectextile.com/wp-content/uploads/2024/10/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20241015121353.png"
+                    alt="Bed sheet sets"
+                  />
+                  <div class="pt-card__overlay"></div>
+                  <div class="pt-card__body">
+                    <span class="pt-card__tag">Finished Bedding</span>
+                    <h3 class="pt-card__title">Bed sheet sets</h3>
+                    <p class="pt-card__text">Complete, retail-ready bedding presentation.</p>
+                  </div>
+                </article>
+                <article class="pt-card">
+                  <img
+                    class="pt-card__image"
+                    src="https://perfectextile.com/wp-content/uploads/2024/10/SKU-11-Ultrasonic-Beige-King-104__-x-92___%E5%89%AF%E6%9C%AC-1024x1024.png"
+                    alt="Ultrasonic sets"
+                  />
+                  <div class="pt-card__overlay"></div>
+                  <div class="pt-card__body">
+                    <span class="pt-card__tag">Featured Sets</span>
+                    <h3 class="pt-card__title">Ultrasonic sets</h3>
+                    <p class="pt-card__text">Decorative patterning with modern bedding appeal.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pt-section pt-video-showcase" id="video-showcase">
+          <div class="pt-container">
+            <div class="pt-section-heading pt-section-heading--center">
+              <span class="pt-kicker">Factory Overview</span>
+              <h2 class="pt-title">Dual-base manufacturing <span>with visual storytelling</span></h2>
+              <p class="pt-subtitle">
+                Two large media cards reproduce the source homepage’s layered image treatment,
+                soft shadows, and premium industrial-tour presentation.
+              </p>
+            </div>
+
+            <div class="pt-video-grid">
+              <article class="pt-video-card">
+                <div class="pt-video-card__media">
+                  <img
+                    src="https://perfectextile.com/wp-content/uploads/2025/12/zhejiang-factory-2.png"
+                    alt="Zhejiang factory"
+                  />
+                  <span class="pt-video-card__play">▶</span>
+                </div>
+                <div class="pt-video-card__content">
+                  <h3 class="pt-video-card__title">Factory 1 · Zhejiang industrial manufacturing base</h3>
+                  <p class="pt-video-card__meta">
+                    Industrial Park, Meishan Town, Changxing County, Huzhou City, Zhejiang Province, China.
+                  </p>
+                </div>
+              </article>
+
+              <article class="pt-video-card">
+                <div class="pt-video-card__media">
+                  <img
+                    src="https://perfectextile.com/wp-content/uploads/2025/12/xinjiang-factory-1.jpg"
+                    alt="Xinjiang factory"
+                  />
+                  <span class="pt-video-card__play">▶</span>
+                </div>
+                <div class="pt-video-card__content">
+                  <h3 class="pt-video-card__title">Factory 2 · Xinjiang energy-advantaged production hub</h3>
+                  <p class="pt-video-card__meta">
+                    Economic and Technological Development Zone Industrial Park, Aral, Xinjiang Province, China.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="pt-section pt-compare">
+          <div class="pt-container">
+            <div class="pt-compare__shell">
+              <div class="pt-section-heading pt-section-heading--center">
+                <span class="pt-kicker">Strategic Upgrade</span>
+                <h2 class="pt-title">Beyond tradition: <span>Why we choose Xinjiang</span></h2>
+                <p class="pt-subtitle">
+                  A strategic upgrade in energy, supply chain control and intelligent manufacturing.
+                </p>
+              </div>
+
+              <div class="pt-compare__grid">
+                <article class="pt-compare-card">
+                  <span class="pt-compare-card__label">Traditional Model</span>
+                  <h3 class="pt-compare-card__title">Fragmented manufacturing</h3>
+                  <ul class="pt-compare-card__list">
+                    <li>Higher external energy dependence</li>
+                    <li>Longer supply-chain response time</li>
+                    <li>Lower integration efficiency</li>
+                    <li>Limited cost flexibility</li>
+                  </ul>
+                </article>
+
+                <article class="pt-compare-card pt-compare-card--featured">
+                  <span class="pt-compare-card__label">Perfectextile Edge</span>
+                  <h3 class="pt-compare-card__title">Energy + process integration</h3>
+                  <ul class="pt-compare-card__list">
+                    <li>Stronger utility-cost competitiveness</li>
+                    <li>Stable production from fiber to bedding</li>
+                    <li>Faster response for OEM and ODM</li>
+                    <li>Better scalability for export programs</li>
+                  </ul>
+                </article>
+
+                <article class="pt-compare-card">
+                  <span class="pt-compare-card__label">Client Outcome</span>
+                  <h3 class="pt-compare-card__title">Smarter global sourcing</h3>
+                  <ul class="pt-compare-card__list">
+                    <li>Improved margin resilience</li>
+                    <li>Consistent quality assurance</li>
+                    <li>Better timeline predictability</li>
+                    <li>More room for customization</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pt-section pt-process">
+          <div class="pt-container">
+            <div class="pt-section-heading pt-section-heading--center">
+              <span class="pt-kicker">Process Carousel</span>
+              <h2 class="pt-title">Perfectextile <span>production process</span></h2>
+              <p class="pt-subtitle">
+                Discover the craftsmanship behind each bedding piece, from premium material
+                preparation to final sewing, packing and export finishing.
+              </p>
+            </div>
+
+            <div class="pt-carousel">
+              <div class="pt-carousel__item">
+                <img src="https://perfectextile.com/wp-content/uploads/2024/11/%E4%BD%A0%E7%9A%84%E6%AE%B5%E8%90%BD%E6%96%87%E5%AD%97-27.webp" alt="Process 1" />
+              </div>
+              <div class="pt-carousel__item">
+                <img src="https://perfectextile.com/wp-content/uploads/2024/11/%E4%BD%A0%E7%9A%84%E6%AE%B5%E8%90%BD%E6%96%87%E5%AD%97-29.webp" alt="Process 2" />
+              </div>
+              <div class="pt-carousel__item">
+                <img src="https://perfectextile.com/wp-content/uploads/2024/11/%E4%BD%A0%E7%9A%84%E6%AE%B5%E8%90%BD%E6%96%87%E5%AD%97-30.webp" alt="Process 3" />
+              </div>
+              <div class="pt-carousel__item">
+                <img src="https://perfectextile.com/wp-content/uploads/2024/11/%E4%BD%A0%E7%9A%84%E6%AE%B5%E8%90%BD%E6%96%87%E5%AD%97-32.webp" alt="Process 4" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pt-section pt-testimonials">
+          <div class="pt-container pt-testimonials__grid">
+            <div class="pt-testimonials__aside">
+              <span class="pt-kicker">Testimonials</span>
+              <h2 class="pt-title">Reviews from <span>our clients</span></h2>
+              <p class="pt-subtitle">
+                At Perfectextile, we are customer-centric. We collect feedback in a timely
+                manner, improve through critical input, and keep reinforcing what clients love.
+              </p>
+              <div style="margin-top: 24px">
+                <a class="pt-button" href="#cta">Write an evaluation</a>
+              </div>
+            </div>
+            <div class="pt-review-stack">
+              <article class="pt-review-card">
+                <img src="https://perfectextile.com/wp-content/uploads/2024/10/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20241012104050.jpg" alt="Client review 1" />
+              </article>
+              <article class="pt-review-card">
+                <img src="https://perfectextile.com/wp-content/uploads/2024/10/89291f7a-b274-445b-b783-4a7063cdefde.jpg" alt="Client review 2" />
+              </article>
+              <article class="pt-review-card">
+                <img src="https://perfectextile.com/wp-content/uploads/2024/10/f7baadca-3c2b-451b-bb8b-22429d4231a3.jpg" alt="Client review 3" />
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="pt-section pt-history" id="history">
+          <div class="pt-container pt-history__layout">
+            <div>
+              <span class="pt-kicker">Company Story</span>
+              <h2 class="pt-title">Company <span>history</span></h2>
+              <p class="pt-subtitle">
+                Pengfei was founded by my parents in 2004. What started as a local Chinese
+                factory evolved into Perfectextile, a globally oriented textile and bedding supplier.
+              </p>
+              <div style="margin-top: 24px">
+                <a class="pt-button" href="#footer">View More</a>
+              </div>
+            </div>
+
+            <div class="pt-timeline">
+              <article class="pt-timeline__item">
+                <div class="pt-timeline__dot"></div>
+                <div class="pt-timeline__year">2004</div>
+                <span class="pt-timeline__phase">Born</span>
+                <div class="pt-timeline__card">
+                  <img src="https://perfectextile.com/wp-content/uploads/2024/09/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240925133852.png" alt="Pengfei is born" />
+                  <div class="pt-timeline__card-body">
+                    <h3 class="pt-timeline__card-title">Pengfei is born</h3>
+                    <p class="pt-timeline__card-text">The company starts with DTY machine investment imported from Germany.</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="pt-timeline__item">
+                <div class="pt-timeline__dot"></div>
+                <div class="pt-timeline__year">2007</div>
+                <span class="pt-timeline__phase">Develop</span>
+                <div class="pt-timeline__card">
+                  <img src="https://perfectextile.com/wp-content/uploads/2024/09/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240925134212.png" alt="Production capacity" />
+                  <div class="pt-timeline__card-body">
+                    <h3 class="pt-timeline__card-title">Production scales up</h3>
+                    <p class="pt-timeline__card-text">Core knitting and textile capabilities continue to expand.</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="pt-timeline__item">
+                <div class="pt-timeline__dot"></div>
+                <div class="pt-timeline__year">2012</div>
+                <span class="pt-timeline__phase">Globalize</span>
+                <div class="pt-timeline__card">
+                  <img src="https://perfectextile.com/wp-content/uploads/2024/09/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240925134314.png" alt="Global expansion" />
+                  <div class="pt-timeline__card-body">
+                    <h3 class="pt-timeline__card-title">Perfectextile founded</h3>
+                    <p class="pt-timeline__card-text">The overseas sales direction is formalized for global textile distribution.</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="pt-timeline__item">
+                <div class="pt-timeline__dot"></div>
+                <div class="pt-timeline__year">Today</div>
+                <span class="pt-timeline__phase">Integrated</span>
+                <div class="pt-timeline__card">
+                  <img src="https://perfectextile.com/wp-content/uploads/2024/09/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240925134431.png" alt="Integrated manufacturing" />
+                  <div class="pt-timeline__card-body">
+                    <h3 class="pt-timeline__card-title">Integrated export manufacturer</h3>
+                    <p class="pt-timeline__card-text">From fiber to finished bedding, the company now serves clients around the world.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="pt-section pt-section--compact">
+          <div class="pt-container">
+            <div class="pt-section-heading pt-section-heading--center">
+              <span class="pt-kicker">Certificate</span>
+              <h2 class="pt-title">Proof of quality and <span>compliance</span></h2>
+            </div>
+            <div class="pt-certificate-grid">
+              <img src="https://perfectextile.com/wp-content/uploads/2024/10/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20241009085616.png" alt="Certificate 1" />
+              <img src="https://perfectextile.com/wp-content/uploads/2024/10/certificate-3.png" alt="Certificate 2" />
+              <img src="https://perfectextile.com/wp-content/uploads/2024/10/certificate-1.png" alt="Certificate 3" />
+              <img src="https://perfectextile.com/wp-content/uploads/2024/10/certificate-2.png" alt="Certificate 4" />
+            </div>
+          </div>
+        </section>
+
+        <section class="pt-section pt-blog" id="blog">
+          <div class="pt-container">
+            <div class="pt-section-heading">
+              <span class="pt-kicker">Blog & News</span>
+              <h2 class="pt-title">Articles about <span>Perfectextile</span></h2>
+              <p class="pt-subtitle">
+                Reused post card structures keep the layout consistent while preserving the original
+                homepage’s editorial-card rhythm and promotional hierarchy.
+              </p>
+            </div>
+
+            <div class="pt-blog-grid">
+              <article class="pt-blog-card">
+                <img class="pt-blog-card__image" src="https://perfectextile.com/wp-content/uploads/2026/02/3074fb45c94e425990b97a7af8c7059c-1024x576.jpg" alt="Blog 1" />
+                <div class="pt-blog-card__body">
+                  <span class="pt-blog-card__date">10/02/2026</span>
+                  <h3 class="pt-blog-card__title">What Is Geometric Pink 3D Embossed Fabric Bedding</h3>
+                  <p class="pt-blog-card__text">
+                    Bold patterns, soft texture and durable materials for a modern and comfortable sleep.
+                  </p>
+                  <span class="pt-blog-card__link">Read more →</span>
+                </div>
+              </article>
+
+              <article class="pt-blog-card">
+                <img class="pt-blog-card__image" src="https://perfectextile.com/wp-content/uploads/2026/02/237ea99a08f647e8b784445b945b0626-1024x681.jpg" alt="Blog 2" />
+                <div class="pt-blog-card__body">
+                  <span class="pt-blog-card__date">10/02/2026</span>
+                  <h3 class="pt-blog-card__title">What Makes Polyester Jacquard Fabric Bedding Unique in 2026</h3>
+                  <p class="pt-blog-card__text">
+                    Elegant woven design, lasting durability and easy-care performance for modern bedrooms.
+                  </p>
+                  <span class="pt-blog-card__link">Read more →</span>
+                </div>
+              </article>
+
+              <article class="pt-blog-card">
+                <img class="pt-blog-card__image" src="https://perfectextile.com/wp-content/uploads/2026/02/7148332476c544b2a1e04117665106b9-1024x576.webp" alt="Blog 3" />
+                <div class="pt-blog-card__body">
+                  <span class="pt-blog-card__date">10/02/2026</span>
+                  <h3 class="pt-blog-card__title">What Is Polyester Ultrasonic Fabric Bedding and How Is It Made</h3>
+                  <p class="pt-blog-card__text">
+                    Learn how ultrasonic bonding creates durable, soft and seamless bedding products.
+                  </p>
+                  <span class="pt-blog-card__link">Read more →</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="pt-section pt-cta" id="cta">
+          <div class="pt-container">
+            <div class="pt-cta__inner">
+              <span class="pt-kicker">Ready to Choose Us</span>
+              <h2 class="pt-title">Fabric and bedding <span>built for partnership</span></h2>
+              <p class="pt-subtitle">
+                If you are engaged in fabric sales, finished bedding sourcing, or want to become a
+                distributor, Perfectextile welcomes long-term cooperation.
+              </p>
+              <div style="margin-top: 28px">
+                <a class="pt-button" href="#footer">Quote now</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="pt-section pt-footer" id="footer">
+        <div class="pt-container">
+          <div class="pt-footer__grid">
+            <section>
+              <img
+                class="pt-footer__logo"
+                src="https://perfectextile.com/wp-content/uploads/2024/08/Black-White-Minimalist-Logo-3_%E5%89%AF%E6%9C%AC.png"
+                alt="Perfectextile"
+              />
+              <p>
+                We warmly welcome customers from home and abroad to establish cooperation and
+                create a bright future together.
+              </p>
+              <div class="pt-footer__socials">
+                <a href="https://www.facebook.com/perfectextile/about/">Fb</a>
+                <a href="https://www.linkedin.com/company/perfectextile2004/?viewAsMember=true">In</a>
+                <a href="https://www.instagram.com/perfectextile2004">Ig</a>
+                <a href="https://www.youtube.com/@perfectextile/videos">Yt</a>
+              </div>
+            </section>
+
+            <section>
+              <h3 class="pt-footer__title">Links</h3>
+              <ul class="pt-footer__list">
+                <li><a href="#top">Home</a></li>
+                <li><a href="#history">About Perfectextile</a></li>
+                <li><a href="#history">Company History</a></li>
+                <li><a href="#catalog">Global Network</a></li>
+                <li><a href="#cta">Service</a></li>
+                <li><a href="#footer">Contact Us</a></li>
+              </ul>
+            </section>
+
+            <section>
+              <h3 class="pt-footer__title">More products</h3>
+              <ul class="pt-footer__list">
+                <li><a href="#catalog">White fabric</a></li>
+                <li><a href="#catalog">Dyed fabric</a></li>
+                <li><a href="#catalog">Embossed fabric</a></li>
+                <li><a href="#catalog">Digital printing fabric</a></li>
+                <li><a href="#catalog">Glossy satin</a></li>
+                <li><a href="#catalog">Ultrasonic fabric</a></li>
+              </ul>
+            </section>
+
+            <section>
+              <h3 class="pt-footer__title">Contact</h3>
+              <ul class="pt-footer__list">
+                <li>Zhejiang + Xinjiang manufacturing bases</li>
+                <li>Email: info@perfectextile.com</li>
+                <li>OEM / ODM / Export support</li>
+                <li>Textile and bedding customization</li>
+              </ul>
+              <div class="pt-footer__meta">Open for global sourcing partnerships.</div>
+            </section>
+          </div>
+
+          <div class="pt-footer__bottom">
+            <span>© Perfectextile replica concept layout</span>
+            <span>Structured HTML · Component-based classes · Visual-first rebuild</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -44,18 +44,20 @@
         {%- endif -%}
       </div>
 
-      <div class="pt-global-customers-cta__metrics" role="list">
-        {%- for block in section.blocks -%}
-          <article class="pt-global-customers-cta__metric" {{ block.shopify_attributes }} role="listitem">
-            {%- if block.settings.value != blank -%}
-              <p class="pt-global-customers-cta__metric-value">{{ block.settings.value | escape }}</p>
-            {%- endif -%}
-            {%- if block.settings.label != blank -%}
-              <p class="pt-global-customers-cta__metric-label">{{ block.settings.label | escape }}</p>
-            {%- endif -%}
-          </article>
-        {%- endfor -%}
-      </div>
+      {%- if section.blocks.size > 0 -%}
+        <div class="pt-global-customers-cta__metrics" role="list">
+          {%- for block in section.blocks -%}
+            <article class="pt-global-customers-cta__metric" {{ block.shopify_attributes }} role="listitem">
+              {%- if block.settings.value != blank -%}
+                <p class="pt-global-customers-cta__metric-value">{{ block.settings.value | escape }}</p>
+              {%- endif -%}
+              {%- if block.settings.label != blank -%}
+                <p class="pt-global-customers-cta__metric-label">{{ block.settings.label | escape }}</p>
+              {%- endif -%}
+            </article>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </section>
