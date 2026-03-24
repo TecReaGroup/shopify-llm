@@ -22,6 +22,8 @@ Shopify 1:1 复刻 [perfectextile](https://perfectextile.com/)的主页，只需
 
 ### 1. 基础全局样式替换 (Base CSS)
 
+严格注意设计规范，和卡片复用性
+
 打开 `assets/base.css`。生成全局 CSS 变量。
 
 **提示词：**
